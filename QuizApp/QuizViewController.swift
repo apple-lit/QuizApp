@@ -19,6 +19,10 @@ class QuizViewController: UIViewController {
     //クイズを表示するTextView
     @IBOutlet var quizTextView: UITextView!
     
+    //正誤判定のマルバツ
+    @IBOutlet var correctOrWrong: UIImageView!
+    
+    
     //選択肢のボタン
     @IBOutlet var choice1: UIButton!
     @IBOutlet var choice2: UIButton!
@@ -31,12 +35,16 @@ class QuizViewController: UIViewController {
         var tempArray = [Any]()
         
         //tempArrayに問題文、選択肢、答えが入った配列を追加
-        tempArray.append(["問題文１", "あ", "い", "う", 1])
-        tempArray.append(["問題文2", "え", "お", "か", 1])
-        tempArray.append(["問題文3", "き", "く", "け", 2])
-        tempArray.append(["問題文４", "こ", "さ", "し", 2])
-        tempArray.append(["問題文5", "す", "せ", "そ", 3])
-        tempArray.append(["問題文6", "選択肢１", "選択肢２", "選択肢３", 3])
+        tempArray.append(["Didactic", "教訓的な", "活発的な", "補佐的な", 1])
+        tempArray.append(["Fortuitous", "偶然の", "愉快な", "残酷な", 1])
+        tempArray.append(["Alacrity", "苦しみ", "素早さ", "物欲", 2])
+        tempArray.append(["Hegemony", "敵情", "覇権", "勇気", 2])
+        tempArray.append(["Linchpin", "先行き", "点滴", "輪止め", 3])
+        tempArray.append(["Ostracism", "猶予", "リストラ", "追放", 3])
+        tempArray.append(["Panacea", "救世主", "万能薬", "暗点", 2])
+        tempArray.append(["Promulgate", "公布", "招待", "宣伝", 1])
+        tempArray.append(["Quixotic", "楽観的な", "中心的な", "非現実的な", 3])
+        tempArray.append(["Vociferous", "騒々しい", "究極の", "先天的な", 1])
     
     
     //問題をシャッフルしてquizArrayに格納する
@@ -73,10 +81,18 @@ class QuizViewController: UIViewController {
             
             //正解数を増やす
             correctAnswers += 1
+            correctOrWrong.image = UIImage(named:"correct.png")
+           
+        }else{
+            correctOrWrong.image = UIImage(named:"wrong.png")
         }
         
         //解いた問題をquizArrayから取り除く
         quizArray.remove(at: 0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.correctOrWrong.image = UIImage(named:"")
+        }
+        
         
         //解いた問題数の合計が予め設定していた問題数に達したら結果画面へ
         if quizArray.count == 0{
