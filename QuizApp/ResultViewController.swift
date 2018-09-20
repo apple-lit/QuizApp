@@ -19,7 +19,7 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        resultLabel.text = String(correctAnswers)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +30,8 @@ class ResultViewController: UIViewController {
     //タイトルへ戻るボタン
     @IBAction func back(){
         
+        self.presentingViewController?.presentingViewController?
+        .dismiss(animated: true, completion: nil)
         
     }
 

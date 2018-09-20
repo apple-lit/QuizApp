@@ -31,11 +31,11 @@ class QuizViewController: UIViewController {
         var tempArray = [Any]()
         
         //tempArrayに問題文、選択肢、答えが入った配列を追加
-        tempArray.append(["問題文１", "選択肢１", "選択肢２", "選択肢３", 1])
-        tempArray.append(["問題文2", "選択肢１", "選択肢２", "選択肢３", 1])
-        tempArray.append(["問題文3", "選択肢１", "選択肢２", "選択肢３", 2])
-        tempArray.append(["問題文4", "選択肢１", "選択肢２", "選択肢３", 2])
-        tempArray.append(["問題文5", "選択肢１", "選択肢２", "選択肢３", 3])
+        tempArray.append(["問題文１", "あ", "い", "う", 1])
+        tempArray.append(["問題文2", "え", "お", "か", 1])
+        tempArray.append(["問題文3", "き", "く", "け", 2])
+        tempArray.append(["問題文４", "こ", "さ", "し", 2])
+        tempArray.append(["問題文5", "す", "せ", "そ", 3])
         tempArray.append(["問題文6", "選択肢１", "選択肢２", "選択肢３", 3])
     
     
@@ -80,11 +80,23 @@ class QuizViewController: UIViewController {
         
         //解いた問題数の合計が予め設定していた問題数に達したら結果画面へ
         if quizArray.count == 0{
-//            performSegueToResult()
-//        }else{
+            performSegueToResult()
+        }else{
             choiceQuiz()
         }
         
+    }
+    
+    func performSegueToResult(){
+        performSegue(withIdentifier: "toResultView", sender: nil)
+    }
+    
+    //セグエを準備(prepare)するときに呼ばれるメソッド
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toResultView"{
+            let resultViewController = segue.destination as! ResultViewController
+            resultViewController.correctAnswers = self.correctAnswers
+        }
     }
 
     override func didReceiveMemoryWarning() {
