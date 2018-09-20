@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ResultViewController.swift
 //  QuizApp
 //
 //  Created by KudoRintaro on 2018/09/19.
@@ -8,20 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ResultViewController: UIViewController {
     
-   
+    //正解数
+    var correctAnswers : Int = 0
+    
+    //結果を表示数ラベル
+    @IBOutlet var resultLabel : UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    //タイトルへ戻るボタン
+    @IBAction func back(){
+        
+        
+    }
 
 }
-
