@@ -23,7 +23,10 @@ class QuizViewController: UIViewController {
     @IBOutlet var correctOrWrong: UIImageView!
     
     
+    
+    
     //選択肢のボタン
+    
     @IBOutlet var choice1: UIButton!
     @IBOutlet var choice2: UIButton!
     @IBOutlet var choice3: UIButton!
@@ -64,7 +67,7 @@ class QuizViewController: UIViewController {
         let tempArray = quizArray[0] as! [Any]
         
         //問題文のテキストを表示
-        quizTextView.text = tempArray[0] as! String
+        quizTextView.text = tempArray[0] as? String
         
         //選択肢のボタンにそれぞれ選択肢のテキストをセット
         choice1.setTitle(tempArray[1] as? String, for: .normal)
