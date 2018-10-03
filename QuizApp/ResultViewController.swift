@@ -26,10 +26,25 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
 
         resultLabel.text = String(correctAnswers)
+       
+        //userDefaultsからデータを取得
         
+        if saveData.object(forKey: "scoreKey") != nil{
+        scoreArray = saveData.object(forKey: "scoreKey") as! Array<Int>
+        }
         
     //scoreArrayに点数を格納
         scoreArray.append(correctAnswers)
+        
+       //scoreArrayに格納されている点数を降順に並び替える
+        scoreArray.sort(by:{
+            $0 > $1
+        })
+        
+        //userDefaultsにscoreを保存
+        saveData.set(scoreArray, forKey:"scoreKey")
+        
+        
     }
 
     
@@ -52,22 +67,25 @@ class ResultViewController: UIViewController {
    
     @IBAction func toRanking(){
         
-        //userDefaultsにscoreを保存
-        saveData.set(scoreArray, forKey:"scoreKey")
         
+        
+        performSegue(withIdentifier: "toRankingView", sender: nil)
+        
+    }
         func performSegueToRanking(){
-            performSegue(withIdentifier: "toRankingView", sender: nil)
+            
         }
     
         
-        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if segue.identifier == "toRankingView"{
             let rankingViewController = segue.destination as! RankingViewController
             rankingViewController.scoreArray = self.scoreArray
+            //rankingViewController.correctAnswers = self.correctAnswers
             }
         }
  
-    }
+    
     
     
     

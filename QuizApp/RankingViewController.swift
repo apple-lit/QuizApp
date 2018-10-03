@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Rintaro Kudo. All rights reserved.
 //
 
+
+
 import UIKit
 
 class RankingViewController: UIViewController, UITableViewDataSource {
@@ -28,6 +30,12 @@ class RankingViewController: UIViewController, UITableViewDataSource {
         
         //scoreArray.append = [correctAnswers]
         
+        //table.reloadData()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        table.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
